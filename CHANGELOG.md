@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.1
+  * Add select_all for streams and fields
+
 ## 1.0.0
   * No change from `v0.0.4`
 
