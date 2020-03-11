@@ -1,4 +1,5 @@
 from singer.catalog import Catalog, CatalogEntry, Schema
+
 from tap_google_sheets.schema import get_schemas, STREAMS
 
 

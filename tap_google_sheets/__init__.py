@@ -86,7 +86,8 @@ def load_json(path):
 def main():
     parsed_args = parse_args(REQUIRED_CONFIG_KEYS)
 
-    with GoogleClient(parsed_args.config['client_id'], parsed_args.config['client_secret'],
+    with GoogleClient(parsed_args.config['client_id'],
+                      parsed_args.config['client_secret'],
                       parsed_args.config['refresh_token'],
                       parsed_args.config['user_agent']) as client:
 
@@ -100,7 +101,11 @@ def main():
         if parsed_args.discover:
             do_discover(parsed_args.select_all, client, spreadsheet_id)
         elif parsed_args.catalog:
-            sync(client=client, config=config, catalog=parsed_args.catalog, state=state)
+            sync(
+                client=client,
+                config=config,
+                catalog=parsed_args.catalog,
+                state=state)
 
 
 if __name__ == '__main__':
