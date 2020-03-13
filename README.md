@@ -133,6 +133,13 @@ The [**Google Sheets Setup & Authentication**](https://drive.google.com/open?id=
     ```bash
     tap-google-sheets --config config.json --discover > catalog.json
     ```
+
+    Select all streams and fields in Discover Mode:
+
+    ```bash
+    tap-google-sheets --config tap_config.json --discover --select_all > catalog.json 
+    ```
+
    See the Singer docs on discovery mode
    [here](https://github.com/singer-io/getting-started/blob/master/docs/DISCOVERY_MODE.md#discovery-mode).
 
