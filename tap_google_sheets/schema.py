@@ -18,6 +18,9 @@ def colnum_string(num):
         string = chr(65 + remainder) + string
     return string
 
+def pad_default_effective_values(headers, first_values):
+    for i in range(len(headers) - len(first_values)):
+        first_values.append(OrderedDict())
 
 # Create sheet_metadata_json with columns from sheet
 def get_sheet_schema_columns(sheet):
@@ -25,7 +28,7 @@ def get_sheet_schema_columns(sheet):
     sheet_json_schema = OrderedDict()
     data = next(iter(sheet.get('data', [])), {})
     row_data = data.get('rowData', [])
-    if row_data == []:
+    if row_data == [] or len(row_data) == 1:
         # Empty sheet, SKIP
         LOGGER.info('SKIPPING Empty Sheet: {}'.format(sheet_title))
         return None, None
@@ -33,7 +36,9 @@ def get_sheet_schema_columns(sheet):
         # spreadsheet is an OrderedDict, with orderd sheets and rows in the repsonse
         headers = row_data[0].get('values', [])
         first_values = row_data[1].get('values', [])
-        # LOGGER.info('first_values = {}'.format(json.dumps(first_values, indent=2, sort_keys=True)))
+        # Pad first row values with default if empty
+        if len(first_values) < len(headers):
+            pad_default_effective_values(headers, first_values)
 
         sheet_json_schema = {
             'type': 'object',
