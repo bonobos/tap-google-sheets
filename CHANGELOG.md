@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.2
+  * Support sheets without any values
+
 ## 1.0.1
   * Add select_all for streams and fields
 
